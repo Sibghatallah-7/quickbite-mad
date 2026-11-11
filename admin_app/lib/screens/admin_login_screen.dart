@@ -63,7 +63,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // Logo / Header Icon
                   Container(

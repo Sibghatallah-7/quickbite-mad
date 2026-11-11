@@ -21,6 +21,22 @@ class CartService extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addToCart(FoodItem food) {
+    addItem(food);
+  }
+
+  void decrementQuantity(String foodId) {
+    final index = _items.indexWhere((item) => item.food.id == foodId);
+    if (index >= 0) {
+      if (_items[index].quantity > 1) {
+        _items[index].quantity -= 1;
+      } else {
+        _items.removeAt(index);
+      }
+      notifyListeners();
+    }
+  }
+
   void removeItem(String foodId) {
     _items.removeWhere((item) => item.food.id == foodId);
     notifyListeners();

@@ -7,4 +7,5 @@ class CartItem {
   CartItem({required this.food, this.quantity = 1});
 
   double get subtotal => food.price * quantity;
+  double get totalPrice => subtotal;
 }

@@ -12,6 +12,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         title: 'QuickBite',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFD32F2F)),
           useMaterial3: true,
         ),
         home: const SplashScreen(),

@@ -5,7 +5,7 @@ class AdminService {
 
   bool _isLoggedIn = false;
   String _adminEmail = 'admin@quickbite.com';
-  String _adminName = 'Admin QuickBite';
+  final String _adminName = 'Admin QuickBite';
 
   bool get isLoggedIn => _isLoggedIn;
   String get adminEmail => _adminEmail;

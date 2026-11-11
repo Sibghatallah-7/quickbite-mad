@@ -21,7 +21,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   void initState() {
     super.initState();
     final user = Provider.of<AuthService>(context, listen: false).currentUser;
-    _addressController = TextEditingController(text: user?.address ?? '');
+    _addressController = TextEditingController(text: user?.address ?? 'St. Sunset Road, Seminyak, Badung Regency, Bali');
   }
 
   void _placeOrder() async {
@@ -64,34 +64,48 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ),
             const SizedBox(height: 24),
             const Text('Payment Method', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            RadioListTile<String>(
-              title: const Text('Cash on Delivery'),
-              value: 'Cash on Delivery',
-              groupValue: _paymentMethod,
-              onChanged: (val) => setState(() => _paymentMethod = val!),
+            const SizedBox(height: 12),
+
+            // Cash on Delivery Option
+            ListTile(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+                side: BorderSide(color: _paymentMethod == 'Cash on Delivery' ? const Color(0xFFD32F2F) : Colors.grey[300]!),
+              ),
+              leading: const Icon(Icons.money, color: Color(0xFFD32F2F)),
+              title: const Text('Cash on Delivery', style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: _paymentMethod == 'Cash on Delivery' ? const Icon(Icons.check_circle, color: Color(0xFFD32F2F)) : null,
+              onTap: () => setState(() => _paymentMethod = 'Cash on Delivery'),
             ),
-            RadioListTile<String>(
-              title: const Text('Credit/Debit Card'),
-              value: 'Card',
-              groupValue: _paymentMethod,
-              onChanged: (val) => setState(() => _paymentMethod = val!),
+            const SizedBox(height: 10),
+
+            // Card Option
+            ListTile(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+                side: BorderSide(color: _paymentMethod == 'Card' ? const Color(0xFFD32F2F) : Colors.grey[300]!),
+              ),
+              leading: const Icon(Icons.credit_card, color: Color(0xFFD32F2F)),
+              title: const Text('Credit/Debit Card', style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: _paymentMethod == 'Card' ? const Icon(Icons.check_circle, color: Color(0xFFD32F2F)) : null,
+              onTap: () => setState(() => _paymentMethod = 'Card'),
             ),
+
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Total:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text('\$${cart.totalAmount.toStringAsFixed(2)}', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.orange)),
+                Text('\$${cart.totalAmount.toStringAsFixed(2)}', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFFD32F2F))),
               ],
             ),
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
-              height: 50,
+              height: 52,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
+                  backgroundColor: const Color(0xFFD32F2F),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),

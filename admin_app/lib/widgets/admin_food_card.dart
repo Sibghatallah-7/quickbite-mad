@@ -26,14 +26,14 @@ class AdminFoodCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Row(
-          crossAxisAlignment: CrossAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Emoji or Image Avatar Container
             Container(
               width: 70,
               height: 70,
               decoration: BoxDecoration(
-                color: theme.colorScheme.primaryContainer.withOpacity(0.4),
+                color: theme.colorScheme.primaryContainer.withValues(alpha: 0.4),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
@@ -48,7 +48,7 @@ class AdminFoodCard extends StatelessWidget {
             // Item Details
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -66,8 +66,8 @@ class AdminFoodCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
                           color: foodItem.available
-                              ? Colors.green.withOpacity(0.15)
-                              : Colors.red.withOpacity(0.15),
+                              ? Colors.green.withValues(alpha: 0.15)
+                              : Colors.red.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
@@ -121,7 +121,7 @@ class AdminFoodCard extends StatelessWidget {
                           Switch(
                             value: foodItem.available,
                             onChanged: onToggleAvailability,
-                            activeColor: theme.colorScheme.primary,
+                            activeThumbColor: theme.colorScheme.primary,
                           ),
                           IconButton(
                             icon: const Icon(Icons.delete_outline, size: 20),

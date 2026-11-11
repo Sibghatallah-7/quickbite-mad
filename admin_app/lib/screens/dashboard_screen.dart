@@ -81,7 +81,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           padding: const EdgeInsets.all(16.0),
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
-            crossAxisAlignment: CrossAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Welcome Banner
               Card(
@@ -99,7 +99,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
-                          crossAxisAlignment: CrossAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Welcome Back!',
@@ -226,14 +226,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
-          crossAxisAlignment: CrossAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               children: [
                 CircleAvatar(
                   radius: 16,
-                  backgroundColor: color.withOpacity(0.15),
+                  backgroundColor: color.withValues(alpha: 0.15),
                   child: Icon(icon, color: color, size: 18),
                 ),
                 const SizedBox(width: 8),
@@ -273,7 +273,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         leading: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.15),
+            color: color.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(icon, color: color, size: 28),

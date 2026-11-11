@@ -90,7 +90,7 @@ class _AddEditFoodScreenState extends State<AddEditFoodScreen> {
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // Food Name Field
               TextFormField(
@@ -112,7 +112,7 @@ class _AddEditFoodScreenState extends State<AddEditFoodScreen> {
 
               // Category Dropdown
               DropdownButtonFormField<String>(
-                value: categories.contains(_selectedCategory) ? _selectedCategory : categories.first,
+                initialValue: categories.contains(_selectedCategory) ? _selectedCategory : categories.first,
                 decoration: InputDecoration(
                   labelText: 'Category',
                   prefixIcon: const Icon(Icons.category),
@@ -190,7 +190,7 @@ class _AddEditFoodScreenState extends State<AddEditFoodScreen> {
                 title: const Text('Available for Ordering'),
                 subtitle: Text(_available ? 'Item is visible to customers' : 'Item is marked out of stock'),
                 value: _available,
-                activeColor: theme.colorScheme.primary,
+                activeThumbColor: theme.colorScheme.primary,
                 onChanged: (val) {
                   setState(() => _available = val);
                 },

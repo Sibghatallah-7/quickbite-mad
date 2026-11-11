@@ -12,37 +12,40 @@ class FoodCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.orange.withOpacity(0.1),
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                ),
-                child: Center(
-                  child: Text(
-                    food.emoji,
-                    style: const TextStyle(fontSize: 50),
-                  ),
+            // Food Image / Emoji Avatar Container
+            Container(
+              width: 90,
+              height: 90,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFDECEF),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Center(
+                child: Text(
+                  food.emoji,
+                  style: const TextStyle(fontSize: 48),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12),
+            const SizedBox(width: 16),
+
+            // Item Details
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,17 +54,29 @@ class FoodCard extends StatelessWidget {
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
+                      color: Colors.black87,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '\$${food.price.toStringAsFixed(2)}',
+                    food.description,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey[600],
+                      height: 1.3,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '\$${food.price.toStringAsFixed(0)}',
                     style: const TextStyle(
-                      color: Colors.orange,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      color: Colors.black87,
                     ),
                   ),
                 ],

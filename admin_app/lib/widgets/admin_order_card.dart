@@ -45,7 +45,7 @@ class AdminOrderCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header Row: Order ID & Status Badge
             Row(
@@ -66,9 +66,9 @@ class AdminOrderCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: statusColor.withOpacity(0.15),
+                    color: statusColor.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: statusColor.withOpacity(0.5)),
+                    border: Border.all(color: statusColor.withValues(alpha: 0.5)),
                   ),
                   child: Text(
                     order.status.displayName,
@@ -103,7 +103,7 @@ class AdminOrderCard extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Row(
-              crossAxisAlignment: CrossAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Icon(Icons.location_on_outlined, size: 18, color: Colors.grey),
                 const SizedBox(width: 6),
@@ -152,7 +152,7 @@ class AdminOrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Total: Rs. ${order.totalAmount.toStringAsFixed(0)}',
