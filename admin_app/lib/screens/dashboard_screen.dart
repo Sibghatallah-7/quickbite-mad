@@ -635,66 +635,143 @@ class _DashboardScreenState extends State<DashboardScreen> {
   // NAVIGATION DRAWER (Sidebar based on Reference Image)
   Widget _buildNavigationDrawer(int foodCount) {
     return Drawer(
-      backgroundColor: Colors.white,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          // Drawer Header
-          UserAccountsDrawerHeader(
-            decoration: const BoxDecoration(color: Color(0xFFFF6B00)),
-            accountName: Text(
-              _adminService.adminName,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      backgroundColor: const Color(0xFFFFF7F1),
+      child: SafeArea(
+        child: Column(
+          children: [
+            // Drawer Top Branding Pill Header
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFF6B00),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFFF6B00).withValues(alpha: 0.3),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white24,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.room_service, color: Colors.white, size: 28),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'QuickBite',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          _adminService.adminEmail,
+                          style: const TextStyle(color: Colors.white70, fontSize: 11),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-            accountEmail: Text(_adminService.adminEmail),
-            currentAccountPicture: const CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Text('👨‍🍳', style: TextStyle(fontSize: 32)),
-            ),
-          ),
 
-          // Drawer Navigation Items
-          _buildDrawerItem(Icons.dashboard, 'Dashboard', isSelected: true, onTap: () => Navigator.pop(context)),
-          _buildDrawerItem(Icons.restaurant_menu, 'Food Menu ($foodCount)', onTap: () {
-            Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (_) => const ManageFoodScreen()));
-          }),
-          _buildDrawerItem(Icons.category, 'Categories', onTap: () {
-            Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (_) => const ManageFoodScreen()));
-          }),
-          _buildDrawerItem(Icons.receipt_long, 'Orders', onTap: () {
-            Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (_) => const ManageOrdersScreen()));
-          }),
-          _buildDrawerItem(Icons.people_outline, 'Customers', onTap: () => Navigator.pop(context)),
-          _buildDrawerItem(Icons.two_wheeler, 'Riders', onTap: () => Navigator.pop(context)),
-          _buildDrawerItem(Icons.local_offer_outlined, 'Offers & Discounts', onTap: () => Navigator.pop(context)),
-          _buildDrawerItem(Icons.analytics_outlined, 'Analytics', onTap: () => Navigator.pop(context)),
-          _buildDrawerItem(Icons.settings_outlined, 'Settings', onTap: () => Navigator.pop(context)),
-          const Divider(),
-          _buildDrawerItem(Icons.logout, 'Logout', color: Colors.red, onTap: () {
-            Navigator.pop(context);
-            _logout();
-          }),
-        ],
+            // Drawer Items List
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                children: [
+                  _buildDrawerItem(Icons.home, 'Dashboard', isSelected: true, onTap: () => Navigator.pop(context)),
+                  _buildDrawerItem(Icons.restaurant_menu, 'Food Menu ($foodCount)', onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ManageFoodScreen()));
+                  }),
+                  _buildDrawerItem(Icons.category_outlined, 'Categories', onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ManageFoodScreen()));
+                  }),
+                  _buildDrawerItem(Icons.receipt_long_outlined, 'Orders', onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ManageOrdersScreen()));
+                  }),
+                  _buildDrawerItem(Icons.people_outline, 'Customers', onTap: () => Navigator.pop(context)),
+                  _buildDrawerItem(Icons.two_wheeler, 'Riders', onTap: () => Navigator.pop(context)),
+                  _buildDrawerItem(Icons.local_offer_outlined, 'Offers & Discounts', onTap: () => Navigator.pop(context)),
+                  _buildDrawerItem(Icons.analytics_outlined, 'Analytics', onTap: () => Navigator.pop(context)),
+                  _buildDrawerItem(Icons.settings_outlined, 'Settings', onTap: () => Navigator.pop(context)),
+                ],
+              ),
+            ),
+
+            // Bottom Logout Button
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFF0E8),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: ListTile(
+                  leading: const Icon(Icons.logout, color: Colors.redAccent),
+                  title: const Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _logout();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildDrawerItem(IconData icon, String title, {bool isSelected = false, Color? color, VoidCallback? onTap}) {
-    final themeColor = color ?? (isSelected ? const Color(0xFFFF6B00) : Colors.black87);
+  Widget _buildDrawerItem(IconData icon, String title, {bool isSelected = false, VoidCallback? onTap}) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+      margin: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
-        color: isSelected ? const Color(0xFFFF6B00).withValues(alpha: 0.12) : Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
+        color: isSelected ? const Color(0xFFFF6B00) : Colors.transparent,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: isSelected
+            ? [
+                BoxShadow(
+                  color: const Color(0xFFFF6B00).withValues(alpha: 0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 3),
+                )
+              ]
+            : null,
       ),
       child: ListTile(
-        leading: Icon(icon, color: themeColor),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+        leading: Icon(icon, color: isSelected ? Colors.white : Colors.black87),
         title: Text(
           title,
-          style: TextStyle(color: themeColor, fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
+          style: TextStyle(
+            color: isSelected ? Colors.white : Colors.black87,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+            fontSize: 14,
+          ),
         ),
         onTap: onTap,
       ),
